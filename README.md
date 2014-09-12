@@ -1,4 +1,4 @@
 hangman
 =======
 
-creating hangman with angular and rails
+Creating hangman using angular and rails
