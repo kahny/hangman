@@ -5,11 +5,10 @@
 		<input type="submit" value="hide">
 	</form>
 
-	<button ng-repeat='letter in alphabet' ng-click="console.log(letter)"> {{letter}} </button>
 
-	<div ng-repeat='letter in alphabet'>
-		<button>{{letter}}</button>
-		<p>{{letter}}</p>
+	<div ng-repeat='letter in alphabet' ng-click="clicked(letter)">
+		<button ng-show="alphabetbutton" ng-click="alphabetbutton = false" >{{letter}}</button>
+		<span ng-show="notbutton">{{letter}}</span>
 
 	</div>
 
