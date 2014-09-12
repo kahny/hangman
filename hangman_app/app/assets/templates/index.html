@@ -1,0 +1,16 @@
+
+<!-- <div ng-controller="IndexController"> -->
+	<form ng-init="secretWord=''" ng-submit="secretWord = word; word='';">
+		<input type="text" ng-model="word" placeholder="word for other player to guess">
+		<input type="submit" value="hide">
+	</form>
+
+	<button ng-repeat='letter in alphabet' ng-click="console.log(letter)"> {{letter}} </button>
+
+	<div ng-repeat='letter in alphabet'>
+		<button>{{letter}}</button>
+		<p>{{letter}}</p>
+
+	</div>
+
+<!-- </div> -->
