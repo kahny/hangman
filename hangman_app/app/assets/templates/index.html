@@ -7,10 +7,63 @@
 	</form>
 </div>
 
-	<div ng-repeat='letter in alphabet' ng-click="clicked(letter)">
-		<button ng-show="alphabetbutton" ng-click="alphabetbutton = false" style="display:inline">{{letter}}</button>
-		<span ng-show="notbutton">{{letter}}</span>
+<div class = "inline" ng-repeat='letter in alphabet' ng-click="clicked(letter)">
+	<button ng-show="alphabetbutton" ng-click="alphabetbutton = false" style="display:inline">{{letter}}</button>
+	<span ng-show="notbutton">{{letter}}</span>
+</div>
 
-	</div>
 
+<br><br><br><br><br>
+<div class="inline" ng-repeat='letter in secretword'>
+	<!-- <p ng-show="underscore" class="inline">_</p> -->
+	<p ng-show="A" class="inline" > {{letter}} </p>
+</div>
+
+<div>
+	<p>{{7-count}} remaining guesses</p>
+</div>
 <!-- </div> -->
+
+
+<!-- hangman visual-->
+
+<svg width="300" height="300"
+     viewPort="0 0 500 500" version="1.1"
+     xmlns="http://www.w3./2000/svg">
+		<circle ng-show="head"
+				  cx="100" cy="40" r="10"/>
+		<line ng-show="neck"
+					x1="100" y1="50"
+				  x2="100" y2="80"
+				  stroke="black"
+				  stroke-width="2"/>
+    <line ng-show = "arm1"
+    			x1="20" y1="20"
+          x2="100" y2="80"
+          stroke="black"
+          stroke-width="2"/>
+		<line ng-show = "arm2"
+					x1="100" y1="80"
+          x2="180" y2="20"
+          stroke="black"
+          stroke-width="2"/>
+    <line ng-show = "body"
+    			x1="100" y1="80"
+          x2="100" y2="180"
+          stroke="black"
+          stroke-width="2"/>
+    <line ng-show = "leg1"
+    			x1="100" y1="180"
+          x2="20" y2="240"
+          stroke="black"
+          stroke-width="2"/>
+    <line ng-show = "leg2"
+    			x1="100" y1="180"
+          x2="180" y2="240"
+          stroke="black"
+          stroke-width="2"/>
+</svg>
+
+<div ng-show="losingmessage">
+	<p>You're dead, the secret word was {{secretword}}</p>
+</div>

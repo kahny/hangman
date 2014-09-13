@@ -18,35 +18,66 @@ hangmanApp.config([
 
 hangmanApp.controller("IndexController", [
   "$scope", "$http", function($scope, $http) {
-    var count, secretword;
+    var x;
     $scope.alphabet = [];
     $scope.alphabetbutton = true;
     $scope.secretValue = true;
     $scope.notbutton = false;
-    count = 0;
-    secretword = "";
+    $scope.count = 0;
+    $scope.secretword = "";
+    $scope.secretWordDisplay = false;
+    $scope.underscore = true;
+    x = $scope.count.toString();
     $scope.clickedForm = function(word) {
       console.log("YO");
       $scope.secretValue = false;
       $scope.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       console.log(word);
-      return secretword = word;
+      return $scope.secretword = word;
     };
+    $scope.head = true;
+    $scope.neck = true;
+    $scope.arm1 = true;
+    $scope.arm2 = true;
+    $scope.body = true;
+    $scope.leg1 = true;
+    $scope.leg2 = true;
+    $scope.losingmessage = false;
     return $scope.clicked = function(letter) {
       var secretWordArray;
-      secretWordArray = secretword.toUpperCase().split("");
-      if (count < 10) {
+      x = $scope.count.toString();
+      secretWordArray = $scope.secretword.toUpperCase().split("");
+      if ($scope.count < 6) {
         if (__indexOf.call(secretWordArray, letter) >= 0) {
           console.log("HI");
-          return console.log("number of incorrect guesses:", count);
+          console.log("number of incorrect guesses:", $scope.count);
+          return $scope.A = true;
         } else {
           console.log("not right");
-          count++;
-          return console.log("number of incorrect guesses:", count);
+          $scope.count++;
+          console.log("number of incorrect guesses:", $scope.count);
+          console.log("x", x);
+          $scope.head = false;
+          if ($scope.count === 2) {
+            $scope.neck = false;
+          }
+          if ($scope.count === 3) {
+            $scope.arm1 = false;
+          }
+          if ($scope.count === 4) {
+            $scope.arm2 = false;
+          }
+          if ($scope.count === 5) {
+            $scope.body = false;
+          }
+          if ($scope.count === 6) {
+            return $scope.leg1 = false;
+          }
         }
       } else {
         console.log("you're almost dead");
-        return alert("You're dead, the word is " + secretword);
+        $scope.leg2 = false;
+        return $scope.losingmessage = true;
       }
     };
   }
