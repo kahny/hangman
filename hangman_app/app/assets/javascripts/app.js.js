@@ -27,13 +27,15 @@ hangmanApp.controller("IndexController", [
     $scope.secretword = "";
     $scope.secretWordDisplay = false;
     $scope.underscore = true;
+    $scope.hangmanform = false;
     x = $scope.count.toString();
     $scope.clickedForm = function(word) {
       console.log("YO");
       $scope.secretValue = false;
       $scope.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       console.log(word);
-      return $scope.secretword = word;
+      $scope.secretword = word;
+      return $scope.hangmanform = true;
     };
     $scope.head = true;
     $scope.neck = true;

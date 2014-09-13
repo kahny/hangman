@@ -23,7 +23,7 @@ hangmanApp.controller "IndexController", ["$scope", "$http", ($scope, $http) ->
   $scope.secretword = ""
   $scope.secretWordDisplay = false
   $scope.underscore = true
-
+  $scope.hangmanform = false
 
   #trying to match up the body parts to a class name.. setting it out here doesn't work
   x = $scope.count.toString()
@@ -37,6 +37,7 @@ hangmanApp.controller "IndexController", ["$scope", "$http", ($scope, $http) ->
   	$scope.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   	console.log(word)
   	$scope.secretword = word
+  	$scope.hangmanform = true
 
   #when the button is clicked, check that the letter matches the secret word
 
