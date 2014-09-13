@@ -1,13 +1,14 @@
 
 <!-- <div ng-controller="IndexController"> -->
+<div ng-show="secretValue">
 	<form ng-init="secretWord=''" ng-submit="secretWord = word; word='';">
 		<input type="text" ng-model="word" placeholder="word for other player to guess">
-		<input type="submit" value="hide">
+		<input type="submit" value="hide" ng-click="clickedForm(word)">
 	</form>
-
+</div>
 
 	<div ng-repeat='letter in alphabet' ng-click="clicked(letter)">
-		<button ng-show="alphabetbutton" ng-click="alphabetbutton = false" >{{letter}}</button>
+		<button ng-show="alphabetbutton" ng-click="alphabetbutton = false" style="display:inline">{{letter}}</button>
 		<span ng-show="notbutton">{{letter}}</span>
 
 	</div>

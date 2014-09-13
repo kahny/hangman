@@ -18,30 +18,36 @@ hangmanApp.config([
 
 hangmanApp.controller("IndexController", [
   "$scope", "$http", function($scope, $http) {
-    var count, secretWord;
-    $scope.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var count, secretword;
+    $scope.alphabet = [];
     $scope.alphabetbutton = true;
+    $scope.secretValue = true;
     $scope.notbutton = false;
-    $scope.secretWord = "secret";
     count = 0;
-    $scope.clicked = function(letter) {
+    secretword = "";
+    $scope.clickedForm = function(word) {
+      console.log("YO");
+      $scope.secretValue = false;
+      $scope.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      console.log(word);
+      return secretword = word;
+    };
+    return $scope.clicked = function(letter) {
       var secretWordArray;
-      secretWordArray = secretWord.split("");
+      secretWordArray = secretword.toUpperCase().split("");
       if (count < 10) {
         if (__indexOf.call(secretWordArray, letter) >= 0) {
           console.log("HI");
-          count++;
-          return console.log(count);
+          return console.log("number of incorrect guesses:", count);
         } else {
           console.log("not right");
           count++;
-          return console.log(count);
+          return console.log("number of incorrect guesses:", count);
         }
       } else {
         console.log("you're almost dead");
-        return alert("You're dead, the word is " + secretWord);
+        return alert("You're dead, the word is " + secretword);
       }
     };
-    return secretWord = "SECRET";
   }
 ]);
