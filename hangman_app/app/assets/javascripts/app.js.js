@@ -18,7 +18,7 @@ hangmanApp.config([
 
 hangmanApp.controller("IndexController", [
   "$scope", "$http", function($scope, $http) {
-    var x;
+    var alphabet, x;
     $scope.alphabet = [];
     $scope.alphabetbutton = true;
     $scope.secretValue = true;
@@ -27,14 +27,15 @@ hangmanApp.controller("IndexController", [
     $scope.secretword = "";
     $scope.secretWordDisplay = false;
     $scope.underscore = true;
+    $scope.Ax = true;
+    alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     $scope.hangmanform = false;
     x = $scope.count.toString();
     $scope.clickedForm = function(word) {
-      console.log("YO");
       $scope.secretValue = false;
       $scope.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       console.log(word);
-      $scope.secretword = word;
+      $scope.secretword = word.toUpperCase();
       return $scope.hangmanform = true;
     };
     $scope.head = true;
@@ -45,20 +46,40 @@ hangmanApp.controller("IndexController", [
     $scope.leg1 = true;
     $scope.leg2 = true;
     $scope.losingmessage = false;
+    $scope.winningmessage = false;
+    $scope.correctLetterCount = 0;
     return $scope.clicked = function(letter) {
-      var secretWordArray;
-      x = $scope.count.toString();
+      var i, secretWordArray, sw, uniq, uniqueCharacterCount;
+      x = $scope.count;
       secretWordArray = $scope.secretword.toUpperCase().split("");
+      sw = $scope.secretword;
+      uniq = "";
+      i = 0;
+      while (i < sw.length) {
+        if (uniq.indexOf(sw[i]) === -1) {
+          uniq += sw[i];
+        }
+        i++;
+      }
+      uniqueCharacterCount = uniq.length;
       if ($scope.count < 6) {
         if (__indexOf.call(secretWordArray, letter) >= 0) {
-          console.log("HI");
           console.log("number of incorrect guesses:", $scope.count);
-          return $scope.A = true;
+          $scope[letter] = true;
+          $scope[letter + "x"] = false;
+          $scope.correctLetterCount++;
+          console.log("correctLetterCount", $scope.correctLetterCount);
+          console.log("uniqueCharacterCount", uniqueCharacterCount);
+          if ($scope.correctLetterCount === uniqueCharacterCount) {
+            console.log("YOU WON!");
+            return $scope.winningmessage = true;
+          }
         } else {
           console.log("not right");
           $scope.count++;
           console.log("number of incorrect guesses:", $scope.count);
           console.log("x", x);
+          console.log("$scope.count", $scope.count);
           $scope.head = false;
           if ($scope.count === 2) {
             $scope.neck = false;
@@ -78,6 +99,7 @@ hangmanApp.controller("IndexController", [
         }
       } else {
         console.log("you're almost dead");
+        $scope.count++;
         $scope.leg2 = false;
         return $scope.losingmessage = true;
       }

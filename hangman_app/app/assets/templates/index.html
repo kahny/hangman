@@ -16,8 +16,8 @@
 
 	<br><br><br><br><br>
 	<div class="inline" ng-repeat='letter in secretword'>
-		<!-- <p ng-show="underscore" class="inline">_</p> -->
-		<p ng-show="A" class="inline" > {{letter}} </p>
+		<p ng-show={{letter+"x"}} class="inline">_</p>
+		<p ng-show={{letter}} class="inline" > {{letter}} </p>
 	</div>
 
 	<div>
@@ -67,5 +67,8 @@
 
 	<div ng-show="losingmessage">
 		<p>You're dead, the secret word was {{secretword}}</p>
+	</div>
+	<div ng-show="winningmessage">
+		<p>You won! The secret word was {{secretword}}</p>
 	</div>
 </div>
